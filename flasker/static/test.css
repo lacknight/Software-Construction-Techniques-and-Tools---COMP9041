@@ -1,0 +1,32 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.poster-list {
+    /*height: 100vh;*/
+    /*background-color: grey;*/
+}
+
+.user {
+    /*height: 20vh;*/
+    background-color: green;
+}
+
+.friend-list {
+    /*height: 80vh;*/
+    background-color: yellowgreen;
+}
+
+.tools {
+    display: flex;
+    align-content: flex-end;
+}
+
+.time {
+    font-size: small;
+    color: lightgrey;
+}

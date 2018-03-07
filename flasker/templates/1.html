@@ -1,0 +1,114 @@
+                        <ul>
+                            <li>
+                                <div class="card" style="width: 100%; margin: 5px auto">
+                                    <div class="card-body">
+
+                                            <div>
+                                                <p class="message">{{ message[3] }}</p>
+                                            </div>
+                                            <hr>
+                                            <div class="tools">
+                                                <a href="/guide?zid={{ message[1] }}"><span class="time">posted by {{ message[2] }} in {{ message[4] }}</span></a>
+                                                <span class="spacer"></span>
+                                                <i class="material-icons" onclick="showHideCode2()" style="cursor:pointer">expand_more</i>
+                                                <i class="material-icons" onclick="showHideCode3()" style="cursor:pointer">add</i>
+                                            </div>
+                                            {% for comment in message[5] %}
+                                                <div id = "showdiv2" style=";">
+                                                    <ul>
+                                                        <li>
+                                                            <p>{{ comment[3] }}</p>
+                                                            {% for reply in comment[5] %}
+                                                                <p>
+                                                                    reply[6]
+                                                                </p>
+                                                            {% endfor%}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endfor %}
+                                                <p>{{ message[5] }}</p>
+                                            <p class="message">{{ comment[3] }}</p>
+                                            <div class="tools">
+                                                <span class="time">commented by {{ comment[2] }} in {{ comment[4] }}</span>
+                                                <span class="spacer"></span>
+                                                <i class="material-icons" onclick="showHideCode4()" style="cursor:pointer">expand_more</i>
+                                                <i class="material-icons" onclick="showHideCode5()" style="cursor:pointer">add</i>
+                                            </div>
+                                            <div id="showdiv4" style="display: none;">
+                                                {% for reply in comment[5] %}
+                                                <p class="message">{{ reply[4] }}</p>
+                                                <span class="time">replied by {{ reply[3] }} in {{ reply[5] }}</span>
+                                                {% endfor %}
+                                            </div>
+                                            <hr>
+                                            {% endfor %}
+                                            </div>
+                                            <hr>
+
+                                    </div>
+                                </div>
+                            <li>
+                        </ul>
+                        {% endfor %}
+
+
+
+
+                                                <div class="card" style="width: 100%; margin: 5px auto">
+                            <div class="card-body">
+                                <div>
+                                    <p class="message">{{ message[3] }}</p>
+                                    <a href="/guide?zid={{ message[1] }}"><span class="time">posted by {{ message[2] }} in {{ message[4] }}</span></a>
+                                    {% for comment in message[5] %}
+                                        <p class="message">{{ comment[3] }}</p>
+                                        <span class="time">posted by {{ comment[2] }} in {{ comment[4] }}</span>
+                                        {% for reply in comment[5] %}
+                                            <p class="message">{{ reply[4] }}</p>
+                                        {% endfor %}
+                                </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+
+                         <!--{% for comment in message[5] %}-->
+                                                <!--<div id = "showdiv2" style=";">-->
+                                                    <!--<ul>-->
+                                                        <!--<li>-->
+                                                            <!--<p>{{ comment[3] }}</p>-->
+                                                            <!--{% for reply in comment[5] %}-->
+                                                                <!--<p>-->
+                                                                    <!--reply[6]-->
+                                                                <!--</p>-->
+                                                            <!--{% endfor%}-->
+                                                        <!--</li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                            <!--{% endfor %}-->
+
+                                                <!--<p>{{ message[5] }}</p>-->
+                                            <!--<p class="message">{{ comment[3] }}</p>-->
+                                            <!--<div class="tools">-->
+                                                <!--<span class="time">commented by {{ comment[2] }} in {{ comment[4] }}</span>-->
+                                                <!--<span class="spacer"></span>-->
+                                                <!--<i class="material-icons" onclick="showHideCode4()" style="cursor:pointer">expand_more</i>-->
+                                                <!--<i class="material-icons" onclick="showHideCode5()" style="cursor:pointer">add</i>-->
+                                            <!--</div>-->
+                                            <!--<div id="showdiv4" style="display: none;">-->
+                                                <!--{% for reply in comment[5] %}-->
+                                                <!--<p class="message">{{ reply[4] }}</p>-->
+                                                <!--<span class="time">replied by {{ reply[3] }} in {{ reply[5] }}</span>-->
+                                                <!--{% endfor %}-->
+                                            <!--</div>-->
+                                            <!--<hr>-->
+                                            <!--{% endfor %}-->
+                                            <!--</div>-->
+                                            <!--<hr>-->
+                                <!--</div>-->
+
+                            <!--<li>-->
+                        <!--</ul>-->
+                        <!--{% endfor %}-->

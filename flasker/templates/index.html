@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Hello, world!</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--google material icon-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../static/test.css">
+<link rel="stylesheet" type="text/css" href="../static/comment.css">
+
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">UNSWtalk</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <span style="width: 20px"></span>
+                <button type="button" class="btn btn-info">Logout</button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-8" style="width: 100%">
+                        <form #messageSearch action="/search_message" method="post">
+                        <input type="text" name="search_message" value="">
+                            <!--<input type="hidden" name="zid" value={{ student_info[0] }}>-->
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+                            <i class="material-icons" onclick="showHideCode1()" style="cursor:pointer">add</i>
+                        </form>
+                </div>
+                <div class="col-8 left-content">
+
+                    <div class="poster-list">
+                        <!--<div id = "showdiv1" style="display:none;">-->
+                            <!--<form #postmessage action="/post" method="post">-->
+                                <!--<textarea name="new_message" clos="30px" rows="3px" value=""></textarea>-->
+                                <!--<input type="submit" type="new_message" value="post">-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <ul>
+                            {% for message in message_list %}
+                            <li>
+                                <div class="card" style="margin: 5px auto">
+                                    <div class="card-body">
+                                        <div>
+                                            <p class="message">{{ message[3] }}</p>
+                                        </div>
+                                        <hr>
+                                        <div class="tools">
+                                            <a href="/guide?zid={{ message[1] }}"><span class="time">posted by {{ message[2] }} in {{ message[4] }}</span></a>
+                                            <span class="spacer"></span>
+                                            <i class="material-icons expand-comments" style="cursor:pointer">expand_more</i>
+                                            <i class="material-icons" style="cursor:pointer">add</i>
+                                        </div>
+                                        <div class="comments" style="display: none;">
+                                            {% for comment in message[5] %}
+                                            <div>
+                                                <p class="comment-message">
+                                                    {{ comment[3] }}
+                                                    <span class="time">comment by {{ comment[2] }} in {{ comment[4] }}</span>
+                                                </p>
+                                                <i class="material-icons expand-replies" style="cursor:pointer">expand_more</i>
+                                                <i class="material-icons" style="cursor:pointer">add</i>
+
+                                                <hr>
+                                                <div class="replies" style="display: none">
+                                                {% for reply in comment[5] %}
+                                                    <p class="reply-message">{{ reply[4] }}</p>
+                                                    <span class="time">replied by {{ reply[3] }} in {{ reply[5] }}</span>
+                                                {% endfor %}
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-4 right-content">
+                    <div class="user">
+                        <div class="user-img">
+                            <img src="{{ img }}" width="100" height="100">
+                        </div>
+                        <ul>
+                            <li>
+                                <span>Zid: {{ student_info[0] }}</span>
+                            </li>
+                            <li>
+                                <span>Fullname: {{ student_info[2] }}</span>
+                            </li>
+                            <li>
+                                <span>Birthday: {{ student_info[6] }}</span>
+                            </li>
+                            <li>
+                                <span>E-mail: {{ student_info[3] }} </span>
+                            </li>
+                            <li>
+                                <span>Courses: {{ student_info[4] }}</span>
+                            </li>
+                            <li>
+                                <span>Home_suburb: {{ student_info[5] }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!---->
+                                            <!--<form #messageSearch action="/search_message" method="post">-->
+                        <!--<input type="text" name="search_message" value="">-->
+                            <!--&lt;!&ndash;<input type="hidden" name="zid" value={{ student_info[0] }}>&ndash;&gt;-->
+                        <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>-->
+                            <!--<i class="material-icons" onclick="showHideCode1()" style="cursor:pointer">add</i>-->
+                        <!--</form>-->
+                    <!---->
+                    <div class="friend-list">
+                        <p>Friends</p>
+                        <form #friendSearch action="/search_friend" method="post">
+                        <input type="text" name="search" value="">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+                        </form>
+                        <ul>
+                            {% for friend in friend_list %}
+                            <li>
+                                <div class="user-img">
+                                    <a href="/guide?zid={{ friend[0] }}"><img src="{{ friend[2] }}" width="30" height="30">{{ friend[1] }}</a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--&lt;!&ndash; Optional JavaScript &ndash;&gt;-->
+<!--&lt;!&ndash; jQuery first, then Popper.js, then Bootstrap JS &ndash;&gt;-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".expand-comments").click(function() {
+        $(this).parent().siblings(".comments").fadeToggle("slow");
+    });
+    $(".expand-replies").click(function() {
+        console.log($(this));
+        $(this).siblings(".replies").fadeToggle("slow");
+    })
+</script>
+
+
+</body>
+</html>
